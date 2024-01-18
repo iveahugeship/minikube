@@ -5,11 +5,9 @@ metadata:
   name: prometheus
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 1m
   sourceRef:
     kind: GitRepository
     name: flux-system
   path: ./apps/monitoring/prometheus
   prune: true
-  wait: true
-  timeout: 5m0s
