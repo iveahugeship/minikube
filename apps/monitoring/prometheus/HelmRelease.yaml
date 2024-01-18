@@ -4,17 +4,14 @@ kind: HelmRelease
 metadata:
   name: kube-prometheus-stack
 spec:
-  interval: 5m
+  interval: 10m
   chart:
     spec:
       chart: kube-prometheus-stack
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
+        namespace: flux-system
       verify:
         provider: cosign
       interval: 60m
-  install:
-    crds: Create
-  upgrade:
-    crds: CreateReplace
