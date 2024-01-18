@@ -5,12 +5,14 @@ metadata:
   name: prometheus
   namespace: flux-system
 spec:
+  interval: 5m
   chart:
     spec:
-      chart: prometheus
-      reconcileStrategy: ChartVersion
+      version: "41.x"
+      chart: kube-prometheus-stack
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-        namespace: flux-system
-  interval: 1m0s
+      verify:
+        provider: cosign
+      interval: 60m
