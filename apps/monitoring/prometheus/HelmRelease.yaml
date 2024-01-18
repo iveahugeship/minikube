@@ -7,11 +7,8 @@ spec:
   interval: 1m
   chart:
     spec:
-      version: "41.x"
       chart: kube-prometheus-stack
+      version: "41.x"
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-      verify:
-        provider: cosign
-      interval: 60m
