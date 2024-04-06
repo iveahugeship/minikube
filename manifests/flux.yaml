@@ -180,10 +180,9 @@ spec:
         # Replace the following URL to change the Git repository used by Flux.
         # HTTP basic auth credentials can be supplied using environment variables:
         # https://$(GIT_AUTHUSER):$(GIT_AUTHKEY)@github.com/user/repository.git
-        #- --git-url=git@github.com:fluxcd/flux-get-started
         - --git-url=git@github.com:iveahugeship/minikube
         - --git-branch=master
-        - --git-path=namespaces,workloads
+        - --git-path=manifests
         - --git-label=flux
         - --git-user=iveahugeship
         - --git-email=iveahugeship@users.noreply.github.com
