@@ -180,7 +180,8 @@ spec:
         # Replace the following URL to change the Git repository used by Flux.
         # HTTP basic auth credentials can be supplied using environment variables:
         # https://$(GIT_AUTHUSER):$(GIT_AUTHKEY)@github.com/user/repository.git
-        - --git-url=git@github.com:fluxcd/flux-get-started
+        #- --git-url=git@github.com:fluxcd/flux-get-started
+        - --git-url=git@github.com:iveahugeship/minikube
         - --git-branch=master
         - --git-path=namespaces,workloads
         - --git-label=flux
@@ -281,8 +282,6 @@ metadata:
   labels:
     kubernetes.io/metadata.name: flux
   name: flux
-  resourceVersion: "263594"
-  uid: d882537c-ae97-4752-b45f-52ee0a08d4a3
 spec:
   finalizers:
   - kubernetes
