@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-sync
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: cluster-sync-{.name}
+    spec:
+      project: 'cluster-{.name}'
+      source:
+        repoURL: https://github.com/iveahugeship/minikube
+        targetRevision: HEAD
+        path: 'clusters/{{.name}}'
+        directory:
+          recurse: true
+      destination:
+        name: '{{.name}}'
+        namespace: default
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
