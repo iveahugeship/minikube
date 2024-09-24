@@ -10,17 +10,17 @@ spec:
   - clusters: {}
   template:
     metadata:
-      name: cluster-sync-{.name}
+      name: 'cluster-sync-{{.nameNormalized}}'
     spec:
-      project: 'cluster-{.name}'
+      project: default
       source:
-        repoURL: https://github.com/iveahugeship/minikube
+        repoURL: git@github.com:iveahugeship/minikube.git
         targetRevision: HEAD
-        path: 'clusters/{{.name}}'
+        path: 'clusters/{{.nameNormalized}}'
         directory:
           recurse: true
       destination:
-        name: '{{.name}}'
+        server: '{{.server}}'
         namespace: default
       syncPolicy:
         syncOptions:
