@@ -6,11 +6,10 @@ metadata:
 spec:
   project: default
   source:
-    chart: sealed-secrets
+    chart: argo-cd
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 7.6.5
     helm:
-      releaseName: argo-cd
       valueFiles:
         - values.yaml
   destination:
