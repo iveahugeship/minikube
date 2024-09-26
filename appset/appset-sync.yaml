@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: appset-sync
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: 'appset-sync-{{.nameNormalized}}'
+    spec:
+      project: default
+      source:
+        repoURL: git@github.com:iveahugeship/minikube.git
+        targetRevision: HEAD
+        path: 'appset'
+        directory:
+          recurse: true
+      destination:
+        server: '{{.server}}'
+        namespace: default
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
