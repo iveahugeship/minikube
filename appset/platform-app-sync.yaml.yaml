@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: platform-sync
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: 'platform-sync-{{.nameNormalized}}'
+    spec:
+      project: default
+      source:
+        repoURL: git@github.com:iveahugeship/minikube.git
+        targetRevision: HEAD
+        path: 'apps/platform'
+        directory:
+          recurse: true
+      destination:
+        server: '{{.server}}'
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
