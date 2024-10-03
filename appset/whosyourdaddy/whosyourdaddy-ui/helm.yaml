@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: platform-sync
+  name: app-ui
   namespace: argocd
 spec:
   goTemplate: true
@@ -10,18 +10,20 @@ spec:
   - clusters: {}
   template:
     metadata:
-      name: 'platform-sync-{{.nameNormalized}}'
+      name: 'app-ui-{{.nameNormalized}}'
     spec:
       project: default
       source:
-        repoURL: git@github.com:iveahugeship/minikube.git
-        targetRevision: HEAD
-        path: 'apps/platform'
-        directory:
-          recurse: true
+        chart: nginx
+        repoURL: https://charts.bitnami.com/bitnami
+        targetRevision: 18.2.2
+        helm:
+          valueFiles:
+            - values.yaml
+            - "values-{{.nameNormalized}}.yaml"
       destination:
         server: '{{.server}}'
-        namespace: default
+        namespace: whosyourdaddy
       syncPolicy:
         automated:
           prune: true
