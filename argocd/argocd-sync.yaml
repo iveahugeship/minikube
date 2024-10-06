@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: appset-sync
+  name: argocd-sync
   namespace: argocd
 spec:
   goTemplate: true
@@ -10,15 +10,15 @@ spec:
   - clusters: {}
   template:
     metadata:
-      name: 'appset-sync-{{.nameNormalized}}'
+      name: 'argocd-sync-{{.nameNormalized}}'
     spec:
       project: default
       source:
         repoURL: git@github.com:iveahugeship/minikube.git
         targetRevision: HEAD
-        path: 'appset'
-        directory:
-          recurse: true
+        path: 'argocd'
+        # directory:
+        #   recurse: true
       destination:
         server: '{{.server}}'
         namespace: default
