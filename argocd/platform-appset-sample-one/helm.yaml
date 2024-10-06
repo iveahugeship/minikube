@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: platform-appset-sample-one
+  namespace: whosyourdaddy
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters: {}
+  template:
+    metadata:
+      name: 'platform-appset-sample-one-{{.nameNormalized}}'
+    spec:
+      project: platform
+      source:
+        chart: bitnami/nginx
+        repoURL: https://charts.bitnami.com/bitnami
+        targetRevision: 18.2.2
+        helm:
+         valueFiles:
+         - values.yaml
+      destination:
+        server: '{{.server}}'
+        namespace: whosyourdaddy
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
