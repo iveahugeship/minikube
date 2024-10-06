@@ -10,11 +10,8 @@ spec:
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 7.6.5
     helm:
-      valuesObject:
-        dex:
-          enabled: false
-        notifications:
-          enabled: false
+      valueFiles:
+      - values.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
