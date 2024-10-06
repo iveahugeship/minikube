@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: platform-appset-sample-one
+  name: platform-sample-one
   namespace: argocd
 spec:
   goTemplate: true
@@ -10,7 +10,7 @@ spec:
   - clusters: {}
   template:
     metadata:
-      name: 'platform-appset-sample-one-{{.nameNormalized}}'
+      name: 'platform-sample-one-{{.nameNormalized}}'
     spec:
       project: platform
       source:
