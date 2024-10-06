@@ -17,8 +17,8 @@ spec:
         repoURL: git@github.com:iveahugeship/minikube.git
         targetRevision: HEAD
         path: 'argocd'
-        # directory:
-        #   recurse: true
+        directory:
+          recurse: true
       destination:
         server: '{{.server}}'
         namespace: default
