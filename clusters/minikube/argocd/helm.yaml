@@ -12,11 +12,11 @@ spec:
     helm:
       valueFiles:
       - ./values.yaml
-      valuesObject:
-        dex:
-          enabled: false
-        notifications:
-          enabled: false
+      # valuesObject:
+      #   dex:
+      #     enabled: false
+      #   notifications:
+      #     enabled: false
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
