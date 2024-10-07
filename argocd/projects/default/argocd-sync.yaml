@@ -16,6 +16,7 @@ spec:
       source:
         repoURL: git@github.com:iveahugeship/minikube.git
         targetRevision: HEAD
+        path: argocd
         directory:
           include: 'argocd/{clusters,repos,projects/*}'
       destination:
