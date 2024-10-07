@@ -12,6 +12,7 @@ spec:
     helm:
       valueFiles:
       - ./values.yaml
+      - ./other-values.yaml
       # valuesObject:
       #   dex:
       #     enabled: false
