@@ -14,7 +14,7 @@ spec:
     spec:
       project: default
       sources:
-      - repoURL: git@github.com:iveahugeship/minikube.git
+        repoURL: git@github.com:iveahugeship/minikube.git
         targetRevision: HEAD
         path: 'argocd'
         directory:
