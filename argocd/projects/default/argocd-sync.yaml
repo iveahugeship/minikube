@@ -18,7 +18,6 @@ spec:
         targetRevision: HEAD
         path: 'argocd'
         directory:
-          include: 'argocd/projects/*'
           recurse: true
       destination:
         server: '{{.server}}'
