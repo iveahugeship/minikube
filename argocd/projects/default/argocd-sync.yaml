@@ -18,8 +18,8 @@ spec:
         targetRevision: HEAD
         path: 'argocd'
         directory:
-          include: 'argocd/{clusters,repos,projects/*}'
-          # recurse: true
+          # include: 'argocd/{clusters,repos,projects/*}'
+          recurse: true
       destination:
         server: '{{.server}}'
         namespace: default
