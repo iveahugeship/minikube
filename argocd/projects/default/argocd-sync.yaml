@@ -19,7 +19,7 @@ spec:
         path: 'argocd'
         directory:
           include: 'argocd/projects/*'
-          # recurse: true
+          recurse: true
       destination:
         server: '{{.server}}'
         namespace: default
