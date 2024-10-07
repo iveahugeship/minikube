@@ -5,19 +5,18 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
+  sources:
+  - repoURL: https://argoproj.github.io/argo-helm
     chart: argo-cd
-    repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 7.6.5
     helm:
       valueFiles:
-      - ./values.yaml
-      - ./other-values.yaml
-      # valuesObject:
-      #   dex:
-      #     enabled: false
-      #   notifications:
-      #     enabled: false
+      - $values/values.yaml
+      - $values/other-values.yaml
+  - repoURL: git@github.com:iveahugeship/minikube.git
+    targetRevision: HEAD
+    path: clusters/minikube/argocd
+    ref: values
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
