@@ -13,12 +13,12 @@ spec:
       name: 'argocd-sync-{{.nameNormalized}}'
     spec:
       project: default
-      source:
-        repoURL: git@github.com:iveahugeship/minikube.git
+      sources:
+      - repoURL: git@github.com:iveahugeship/minikube.git
         targetRevision: HEAD
-        path: argocd
+        path: 'argocd'
         directory:
-          include: 'argocd/{clusters,repos,projects/*}'
+          recurse: true
       destination:
         server: '{{.server}}'
         namespace: default
