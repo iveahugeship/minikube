@@ -13,7 +13,7 @@ spec:
       name: 'argocd-sync-{{.nameNormalized}}'
     spec:
       project: default
-      sources:
+      source:
         repoURL: git@github.com:iveahugeship/minikube.git
         targetRevision: HEAD
         path: 'argocd'
