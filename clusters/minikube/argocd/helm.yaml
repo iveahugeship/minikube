@@ -11,11 +11,10 @@ spec:
     targetRevision: 7.6.5
     helm:
       valueFiles:
-      - $values/values.yaml
-      - $values/other-values.yaml
+      - $values/clusters/minikube/argocd/values.yaml
+      - $values/clusters/minikube/argocd/other-values.yaml
   - repoURL: git@github.com:iveahugeship/minikube.git
     targetRevision: HEAD
-    path: clusters/minikube/argocd
     ref: values
   destination:
     server: "https://kubernetes.default.svc"
