@@ -13,7 +13,7 @@ spec:
           argocd/master: "true"
   template:
     metadata:
-      name: 'argocd-{{.nameNormalized}}'
+      name: 'argocd'
     spec:
       project: default
       sources:
