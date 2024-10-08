@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argocd-appset
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          argocd/master: "true"
+  template:
+    metadata:
+      name: 'argocd-{{.nameNormalized}}'
+    spec:
+      project: default
+      sources:
+      - repoURL: https://argoproj.github.io/argo-helm
+        chart: argo-cd
+        targetRevision: 7.6.5
+        helm:
+          valueFiles:
+          - $values/argocd/projects/default/argocd/values.yaml
+      - repoURL: git@github.com:iveahugeship/minikube.git
+        targetRevision: HEAD
+        ref: values
+      destination:
+        server: "https://kubernetes.default.svc"
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
