@@ -16,7 +16,7 @@ spec:
       source:
         repoURL: git@github.com:iveahugeship/minikube.git
         targetRevision: HEAD
-        path: 'appsets/'
+        path: 'appsets'
         directory:
           recurse: true
       destination:
