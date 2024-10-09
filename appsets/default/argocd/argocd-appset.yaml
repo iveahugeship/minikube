@@ -1,31 +1,34 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: platform-sample-one
+  name: argocd-appset
   namespace: argocd
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-  - clusters: {}
+  - clusters:
+      selector:
+        matchLabels:
+          argocd/master: "true"
   template:
     metadata:
-      name: 'platform-sample-one-{{.nameNormalized}}'
+      name: argocd
     spec:
-      project: platform
+      project: default
       sources:
-      - repoURL: https://charts.bitnami.com/bitnami
-        chart: bitnami/nginx
-        targetRevision: 18.2.2
+      - repoURL: https://argoproj.github.io/argo-helm
+        chart: argo-cd
+        targetRevision: 7.6.5
         helm:
-         valueFiles:
-         - $values/argocd/platform/platform-sample-one/values.yaml
+          valueFiles:
+          - $values/appsets/default/argocd/values.yaml
       - repoURL: git@github.com:iveahugeship/minikube.git
         targetRevision: HEAD
         ref: values
       destination:
-        server: '{{.server}}'
-        namespace: whosyourdaddy
+        server: "https://kubernetes.default.svc"
+        namespace: argocd
       syncPolicy:
         automated:
           prune: true
